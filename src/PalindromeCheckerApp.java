@@ -6,21 +6,34 @@ public class PalindromeCheckerApp {
         System.out.println("System initialized successfully.");
 
         // Hardcoded input string
-        String input = "madan";
+        String input = "madam";
+        String reversed = "";
 
-        boolean isPalindrome = false;
+        boolean isPalindrome = true;
 
         // Loop only till half of the string length
         for (int i = 0; i < input.length() / 2; i++) {
-            if (input.charAt(i) == input.charAt(input.length() - 1 - i)) {
-                isPalindrome = true;
+            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+                isPalindrome = false;
                 break;
             }
         }
+
+        for(int i= input.length()-1; i>=0 ; i--){
+            reversed = reversed + input.charAt(i);
+
+        }
+        boolean revisPalindrome = input.equals(reversed);
+
 
         // Display output
         System.out.println("Input text: " + input);
         System.out.println("Is it a Palindrome?: ");
         System.out.println(isPalindrome);
+
+
+        System.out.println("Reversed text: " + reversed);
+        System.out.println("Is it a Palindrome?: ");
+        System.out.println(revisPalindrome);
     }
 }
