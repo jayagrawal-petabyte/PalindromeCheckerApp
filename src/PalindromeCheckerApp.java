@@ -1,32 +1,28 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
+        String input = "level";
 
-        String input = "civic";
-
-        Queue<Character> queue = new LinkedList<>();
-
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new LinkedList<>();
 
         for (char c : input.toCharArray()) {
-            queue.add(c);   // enqueue
-            stack.push(c);  // push
+            deque.addLast(c);
         }
 
         boolean isPalindrome = true;
 
-        while (!queue.isEmpty()) {
+        while (deque.size() > 1) {
 
-            char fromQueue = queue.remove(); // dequeue
-            char fromStack = stack.pop();    // pop
+            char first = deque.removeFirst();
+            char last = deque.removeLast();
 
-            if (fromQueue != fromStack) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        System.out.println("Input: " + input);
+         System.out.println("Input: " + input);
         System.out.println("Is Palindrome?");
         System.out.println(isPalindrome);
     }
