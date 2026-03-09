@@ -3,18 +3,18 @@ public class PalindromeCheckerApp {
 
         String input = "level";
 
-        Deque<Character> deque = new LinkedList<>();
+        LinkedList<Character> list = new LinkedList<>();
 
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
 
         boolean isPalindrome = true;
 
-        while (deque.size() > 1) {
+        while (list.size() > 1) {
 
-            char first = deque.removeFirst();
-            char last = deque.removeLast();
+            char first = list.removeFirst();
+            char last = list.removeLast();
 
             if (first != last) {
                 isPalindrome = false;
@@ -22,7 +22,7 @@ public class PalindromeCheckerApp {
             }
         }
 
-         System.out.println("Input: " + input);
+        System.out.println("Input: " + input);
         System.out.println("Is Palindrome?");
         System.out.println(isPalindrome);
     }
