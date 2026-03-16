@@ -5,19 +5,17 @@ interface PalindromeStrategy {
     boolean check(String input);
 }
 
-// Stack Strategy Implementation
+// Stack Strategy
 class StackStrategy implements PalindromeStrategy {
 
     public boolean check(String input) {
 
         Stack<Character> stack = new Stack<>();
 
-        // Push characters into stack
         for (char c : input.toCharArray()) {
             stack.push(c);
         }
 
-        // Compare characters while popping
         for (char c : input.toCharArray()) {
             if (stack.pop() != c) {
                 return false;
@@ -28,7 +26,7 @@ class StackStrategy implements PalindromeStrategy {
     }
 }
 
-// Deque Strategy Implementation
+// Deque Strategy
 class DequeStrategy implements PalindromeStrategy {
 
     public boolean check(String input) {
@@ -49,35 +47,38 @@ class DequeStrategy implements PalindromeStrategy {
     }
 }
 
-// Main Application Class
-public class UseCase12PalindromeCheckerApp {
-
-    private PalindromeStrategy strategy;
-
-    // Inject strategy at runtime
-    public UseCase12PalindromeCheckerApp(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean checkPalindrome(String input) {
-        return strategy.check(input);
-    }
+// Main Class
+public class UseCase13PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter a string:");
+        System.out.println("Input:");
         String input = scanner.nextLine();
 
-        // Choose strategy (StackStrategy or DequeStrategy)
-        PalindromeStrategy strategy = new StackStrategy();
+        // Strategy 1: Stack
+        PalindromeStrategy stackStrategy = new StackStrategy();
 
-        UseCase12PalindromeCheckerApp app =
-                new UseCase12PalindromeCheckerApp(strategy);
+        long startTime = System.nanoTime();
+        boolean result1 = stackStrategy.check(input);
+        long endTime = System.nanoTime();
 
-        boolean result = app.checkPalindrome(input);
+        long stackExecutionTime = endTime - startTime;
 
-        System.out.println("Is Palindrome: " + result);
+        System.out.println("Stack Strategy -> Is Palindrome: " + result1);
+        System.out.println("Execution Time: " + stackExecutionTime + " ns");
+
+        // Strategy 2: Deque
+        PalindromeStrategy dequeStrategy = new DequeStrategy();
+
+        startTime = System.nanoTime();
+        boolean result2 = dequeStrategy.check(input);
+        endTime = System.nanoTime();
+
+        long dequeExecutionTime = endTime - startTime;
+
+        System.out.println("Deque Strategy -> Is Palindrome: " + result2);
+        System.out.println("Execution Time: " + dequeExecutionTime + " ns");
     }
 }
